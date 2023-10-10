@@ -71,7 +71,7 @@ function flattenObject(obj, result = {}) {
 
 function mutateArray(a) {
 
-  return a.map(el => {
+  return a.filter(el => el.guest_type === "guest").map(el => {
     let flattenResult = flattenObject(el);
     flattenResult = { ...flattenResult, some_total: flattenResult.some_array.reduce((acc, item) => acc + item, 0) };
     delete flattenResult.some_array;
