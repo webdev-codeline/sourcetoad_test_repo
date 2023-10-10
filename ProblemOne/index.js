@@ -71,7 +71,13 @@ function flattenObject(obj, result = {}) {
 
 function mutateArray(a) {
 
-  return a.map(el => flattenObject(el));
+  return a.map(el => {
+    let flattenResult = flattenObject(el);
+    flattenResult = { ...flattenResult, some_total: flattenResult.some_array.reduce((acc, item) => acc + item, 0) };
+    delete flattenResult.some_array;
+    return flattenResult;
+  }
+  );
 }
 
 $(document).ready(function () {
