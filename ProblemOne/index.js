@@ -55,7 +55,7 @@ var arr = [
   },
 ];
 
-function flattenObject(obj, result = {}) {
+function flattenObject(obj, result = {}) {    // Step 1 
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
@@ -68,16 +68,32 @@ function flattenObject(obj, result = {}) {
   return result;
 }
 
+function sumSomeArray(obj) {    // step 2
+
+  obj.some_total = obj.some_array.reduce((sum, item) => sum + item, 0);
+  delete obj.some_array;
+
+  return obj;
+}
+
+function filterArray(input_array, key, value) { //Step 3
+  return input_array.filter(el => el[key] === value)
+};
+
+function sortArrayByName(input_array) { //Step 4
+  return input_array.sort((a, b) => {
+    const lastNameCompare = a.last_name.localeCompare(b.last_name);
+    if (lastNameCompare !== 0) return lastNameCompare;
+
+    // If last names are equal, then compare by first name
+    return a.first_name.localeCompare(b.first_name);
+  })
+  
+}
 
 function mutateArray(a) {
 
-  return a.filter(el => el.guest_type === "guest").map(el => {
-    let flattenResult = flattenObject(el);
-    flattenResult = { ...flattenResult, some_total: flattenResult.some_array.reduce((acc, item) => acc + item, 0) };
-    delete flattenResult.some_array;
-    return flattenResult;
-  }
-  );
+  return sortArrayByName(filterArray(a, "guest_type", "guest").map(el => sumSomeArray(flattenObject(el))));
 }
 
 $(document).ready(function () {
