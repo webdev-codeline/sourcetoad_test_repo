@@ -1,11 +1,8 @@
-# Sourcetoad Code Test for Front-end Developers
+# Submission for Sourcetoad
 
-### Test Instructions
-Create one Github repo for these problems. Complete the work in that repo so that the commit history can be seen.
+There are two folders for the solutions of ``Problem 1`` and ``Problem 2``
 
-Follow the instructions in each question folder.
 
-When complete, send a link to the repo so that it can be reviewed.
+## Solution for Problem2
 
-#### Thank you for applying to Sourcetoad
-
+You can find the Readme.MD in ``simple_calc`` folder under ``Problem2`` directory.
